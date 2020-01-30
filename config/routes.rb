@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
   
-  root 'posts#index'
+  devise_for :users
+  root 'signup#index'
+
+  resources :signup ,only: [:index] do
+    collection do
+      get 'registration'
+      post 'registration' => 'signup#first_validation'
+      get 'sms_authentication'
+      post 'sms_authentication' => 'signup#sms_check'
+      get 'address'
+      post 'address' => 'signup#second_validation'
+      get 'done'
+    end
+  end
   
 end
