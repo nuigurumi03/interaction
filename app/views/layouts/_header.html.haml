@@ -1,0 +1,42 @@
+%header
+  - if user_signed_in?
+    .header-inner
+      .header-inner__logo
+        Interaction
+      .header-inner__search
+        = form_for to_s do |f|
+          = f.search_field :title, placeholder:"何かお探しですか？", id:"field"
+          = f.button icon("fa", "search", class:"icon"), class:"btn"
+    .header-list
+      .header-list__right
+        .container
+          %a.bnt-massage{:href => "/signup"}
+            Mypage
+            %span マイページ
+          %a.bnt-massage{:href => "/posts/new"}
+            Post
+            %span 投稿する
+          = link_to current_user_destroy_path, class: "bnt-massage", method: :delete do
+            Logout
+            %span ログアウト
+            
+            -# ログイン状態
+
+  - else
+    .header-inner
+      .header-inner__logo
+        Interaction
+      .header-list
+        .header-list__right
+          .container
+          %a.bnt-massage{:href => "/signup"}
+            Signup
+            %span 新規会員登録
+
+          .container
+          %a.bnt-massage{:href => "/users/sign_in"}
+            Login
+            %span ログイン
+          -#   -# ログアウト状態
+
+
