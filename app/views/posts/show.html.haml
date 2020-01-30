@@ -1,0 +1,41 @@
+.main
+  %selection.main-show
+    %h2.post-show
+      = @posts.title
+    .show-form
+      .show-form__upload
+        = image_tag @image.image.to_s
+
+      .show-form__title
+        .show-form__title__text 
+          詳しい内容
+        .show-form__title__detail
+        = @posts.detail
+
+      .show-form__title
+        .show-form__title__text 
+          都道府県
+        .show-form__title__prefecture
+          = @posts.prefecture.name
+
+      .show-form__title
+        .show-form__title__text
+          市区町村
+        .show-form__title__city
+          = @posts.city
+
+      .show-form__title
+        .show-form__title__text
+          番地
+        .show-form__title__house
+          = @posts.house_code
+
+      .show-form__title
+        .show-form__title__text
+          建物名
+        .show-form__title__build
+          = @posts.build_name
+
+      .show-form__title
+        .show-form__title__text
+          -# = link_to 'メッセージを送る', new_post_message_path(@posts.id)

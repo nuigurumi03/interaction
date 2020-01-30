@@ -21,6 +21,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+    @posts = Post.find(params[:id])
+    @image = Image.find(params[:id])
+  end
+
   private
 
   def post_params
