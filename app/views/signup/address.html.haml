@@ -1,0 +1,34 @@
+.user-datail
+  = form_for @profile, url: address_signup_index_path,method: :post do |f|
+    .user-datail-head
+      %h2 住所入力
+    .user-datail-text-address
+      .user-datail-form  
+        = f.label :postal_code, "郵便番号"
+        %span.form-required
+          必須
+      = f.text_field :postal_code, placeholder:"例）１２３４５６７"
+
+      .user-datail-form 
+        = f.label :prefecture_id, "都道府県"
+        %span.form-required
+          必須
+      = f.collection_select :prefecture_id, Prefecture.all, :id, :name
+      
+      .user-datail-form 
+        = f.label :city, "市区町村"
+        %span.form-required
+          必須
+      = f.text_field :city, placeholder:"例）横浜市緑区"
+      .user-datail-form 
+        = f.label :house_code, "番地"
+        %span.form-required
+          必須
+      = f.text_field :house_code, placeholder:"例）青山1-1-1"
+      .user-datail-form 
+        = f.label :bulid_name, "建物名"
+        %p.from-arbitrary
+          任意
+      = f.text_field :bulid_name, placeholder:"例）柳ビル103"
+
+      = f.submit '次へ進む', class:"user-datail-form__btn"
