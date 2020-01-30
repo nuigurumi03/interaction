@@ -6,7 +6,17 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @image = Image.new
     @post.images.new
+  end
+
+  def create
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to root_path
+    else
+      render 'new'
+    end
   end
 
   private
