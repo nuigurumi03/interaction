@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   devise_for :users
-  root 'signup#index'
+  root 'posts#index'
 
   resources :signup ,only: [:index] do
     collection do
@@ -14,5 +14,7 @@ Rails.application.routes.draw do
       get 'done'
     end
   end
+
+  resources :posts
   
 end

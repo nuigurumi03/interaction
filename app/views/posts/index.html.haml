@@ -1,1 +1,14 @@
-でぷろい
+.content
+  .content__main
+    .content__main__text
+      新着一覧
+    .content__main__unit
+      - @posts.each do |post|
+        .content__main__unit__image
+          = link_to post_path(post.id) do
+            - if post.images.empty?
+              画像がありません
+            - else
+              = image_tag post.images[0].image.to_s
+            %br= post.title
+      = paginate @posts
