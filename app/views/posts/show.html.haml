@@ -36,6 +36,9 @@
         .show-form__title__build
           = @posts.build_name
 
-      .show-form__title
-        .show-form__title__text
+      = form_with(model: [@posts, @message], local: true) do |f|
+        = f.text_area :message, placeholder: "コメントする"
+        = f.submit "SEND"
+      -# .show-form__title
+      -#   .show-form__title__text
           -# = link_to 'メッセージを送る', new_post_message_path(@posts.id)
