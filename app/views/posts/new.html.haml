@@ -8,7 +8,6 @@
           %h3.post-form__upload__image
             画像
             %span.require 必須
-          %p 最大10枚までアップロードできます
           
           .field-image
             = f.fields_for :images do |i|
@@ -20,9 +19,6 @@
                   %i.fas.fa-image
                   %i.fas.fa-file-upload.add
               = i.file_field :image, class: "image", style: "display:none;", id: "file"
-
-
-
 
         .post-form__title
           %h3.post-form__title__text
