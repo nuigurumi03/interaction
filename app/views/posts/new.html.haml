@@ -1,0 +1,71 @@
+.main
+  %selection.main__block
+    = form_with model:@post, local:true do |f|
+      %h2.post-block
+        投稿内容を入力
+      .post-form
+        .post-form__upload
+          %h3.post-form__upload__image
+            画像
+            %span.require 必須
+          %p 最大10枚までアップロードできます
+          
+          .field-image
+            = f.fields_for :images do |i|
+              = i.label 'サムネイル（スクリーンショットなど）'
+              #img_field{:onclick => "$('#file').click()"}
+                - if @image.image.present?
+                  = image_tag @image.images.to_s
+                - else
+                  %i.fas.fa-image
+                  %i.fas.fa-file-upload.add
+              = i.file_field :image, class: "image", style: "display:none;", id: "file"
+
+
+
+
+        .post-form__title
+          %h3.post-form__title__text
+            タイトル
+            %span.require 必須
+          %br
+          = f.text_field :title, placeholder:"タイトル名(必須)"
+
+        .post-form__title
+          %h3.post-form__title__text
+            詳しい内容
+            %span.require 必須
+          %br
+          = f.text_area :detail,size: "85x15", placeholder:"詳しい内容(必須)"
+
+        .post-form__title
+          %h3.post-form__title__text
+            都道府県
+            %span.require 必須
+          %br
+          = f.collection_select :prefecture_id, Prefecture.all, :id, :name
+
+        .post-form__title
+          %h3.post-form__title__text
+            市区町村
+            %span.require 必須
+          %br
+          = f.text_field :city, placeholder:"例）横浜市緑区"
+
+        .post-form__title
+          %h3.post-form__title__text
+            番地
+            %span
+          %br
+          = f.text_field :house_code, placeholder:"例）青山1-1-1"
+
+        .post-form__title
+          %h3.post-form__title__text
+            建物名
+            %span
+          %br
+          = f.text_field :build_name, placeholder:"例）柳ビル103"
+
+        .post-form__btn
+          = f.submit "Post", class: "post-form__btn__red"
+          %span 投稿する
